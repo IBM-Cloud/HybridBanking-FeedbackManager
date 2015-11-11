@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Happy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-2" sketch:type="MSArtboardGroup" transform="translate(-10.000000, -10.000000)">
+            <g id="Smilie" sketch:type="MSLayerGroup" transform="translate(10.000000, 10.000000)">
+                <circle id="Oval-5" stroke="#FFFFFF" stroke-width="2" sketch:type="MSShapeGroup" cx="24" cy="24" r="18"></circle>
+                <path d="M12.4285714,24.6428571 C12.4285714,31.0335807 17.6092765,36.2142857 24,36.2142857 C30.3907235,36.2142857 35.5714286,31.0335807 35.5714286,24.6428571" id="Oval-5-Copy" stroke="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <circle id="Oval-6" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="18.5357143" cy="18.5357143" r="2.89285714"></circle>
+                <circle id="Oval-6-Copy" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="29.4642857" cy="18.5357143" r="2.89285714"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

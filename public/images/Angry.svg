@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Angry</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-2" sketch:type="MSArtboardGroup" transform="translate(-140.000000, -10.000000)">
+            <g id="Angry" sketch:type="MSLayerGroup" transform="translate(140.000000, 10.000000)">
+                <circle id="Oval-5" stroke="#FFFFFF" stroke-width="2" sketch:type="MSShapeGroup" cx="24" cy="24" r="18"></circle>
+                <path d="M18,32 L30,32" id="Oval-5-Copy" stroke="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(24.000000, 32.000000) rotate(-180.000000) translate(-24.000000, -32.000000) "></path>
+                <path d="M31.911571,16.9924754 C32.193799,17.4390975 32.3571429,17.9683304 32.3571429,18.5357143 C32.3571429,20.1333952 31.0619666,21.4285714 29.4642857,21.4285714 C28.1932788,21.4285714 27.1137185,20.6088909 26.7253853,19.4693102 L31.911571,16.9924754 Z" id="Oval-6-Copy" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <path d="M21.911571,16.9924754 C22.193799,17.4390975 22.3571429,17.9683304 22.3571429,18.5357143 C22.3571429,20.1333952 21.0619666,21.4285714 19.4642857,21.4285714 C18.1932788,21.4285714 17.1137185,20.6088909 16.7253853,19.4693102 L21.911571,16.9924754 Z" id="Oval-6-Copy-2" fill="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(19.541264, 19.210523) scale(-1, 1) translate(-19.541264, -19.210523) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

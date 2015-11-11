@@ -1,0 +1,140 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue","HelvLightIBM",Arial,sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+}
+
+.navbar-inverse {
+}
+
+.navbar{
+    background-color: white;
+}
+.footer {
+    color: white;
+    background-color: #3A4951;
+}
+
+.global-header__brand {
+	font-size: 25px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.jumbotron {
+	background-color: #4178be;
+	color: white;
+}
+
+td {
+    padding-left: 10px;
+}
+
+
+ .maintable { table-layout: fixed; 
+ border: none !important;}
+
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+ maintable th, maintable td { overflow: hidden; }
+
+.idth {
+    width: 5%;
+}
+
+.feedbackth {
+    width: 35%;
+}
+.graphth {
+    width: 500px;
+}
+.statusth{
+    width:80px;
+}
+.worthth{
+    width:70px;
+}
+.nameth {
+    width:130px;
+    
+}
+.operateth {
+    width: 15%;
+
+}
+.scoreth {
+    width: 15%;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+bootstrap-table .table {
+
+}
+
+thead {
+      /* fallback */
+  background-color: #1a82f7;
+  background: url(images/linear_bg_2.png);
+  background-repeat: repeat-x;
+
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#5788BB), to(#B6DAF4));
+
+  /* Safari 5.1, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #5788BB, #B6DAF4);
+
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #5788BB, #B6DAF4);
+
+  /* IE 10 */
+  background: -ms-linear-gradient(top, #5788BB, #B6DAF4);
+
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #5788BB, #B6DAF4);
+    
+    border: none;
+    color: white;
+}
+
+ .maintable tr:nth-child(even) {background: #F5F7F9}
+#tr:nth-child(odd) {background: #FFF}
+
+th {
+    font-weight: 500;
+}
+* {
+  border-radius: 0 !important;
+}
+
+.container-fluid {
+  padding: 0;
+  width: 100%;
+}
+
+.thTopRow {
+    position: absolute ;
+    top:10px;
+    font-weight: 100;
+    font-size: 22px;
+    padding:10px;
+    
+}
+.box2 {
+  display: inline-block;
+  width: 166px;
+    text-align: center;
+    padding-top:10px;
+}
+.inlineDivs{
+    display:inline-block;
+    vertical-align: top;
+    padding:10px;
+}

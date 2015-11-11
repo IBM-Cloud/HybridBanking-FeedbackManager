@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Rewards</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-1307.000000, -219.000000)" fill="#87B1D7">
+            <path d="M1329,223 C1326.449,223 1324.224,224.369 1323,226.408 C1321.776,224.369 1319.551,223 1317,223 C1313.134,223 1310,226.134 1310,230 C1310,231.933 1310.761,233.706 1312,235 C1314.815,237.94 1323,247 1323,247 C1323,247 1331.185,237.94 1334,235 C1335.239,233.706 1336,231.933 1336,230 C1336,226.134 1332.866,223 1329,223 L1329,223 Z M1332.556,233.617 C1330.457,235.808 1325.499,241.262 1323,244.02 C1320.501,241.263 1315.543,235.809 1313.444,233.617 C1312.513,232.644 1312,231.36 1312,230 C1312,227.243 1314.243,225 1317,225 C1318.768,225 1320.369,225.911 1321.285,227.437 L1323,230.294 L1324.715,227.437 C1325.631,225.911 1327.232,225 1329,225 C1331.757,225 1334,227.243 1334,230 C1334,231.36 1333.487,232.644 1332.556,233.617 L1332.556,233.617 Z" id="Shape" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

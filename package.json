@@ -1,0 +1,19 @@
+{
+  "name": "locallaunch",
+  "version": "1.0.0",
+  "description": "Bluemix Local launch event application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ram Vennam",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+      "cors":"*",
+      "body-parser":"*",
+      "watson-developer-cloud":"~0.10.6",
+      "node-rest-client":"*",
+      "cookie-parser":"*"
+  }
+}

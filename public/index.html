@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.png">
+
+    <title>BlueBank Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap-table.min.css">
+
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet" />
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+    <script src="Chart.min.js"></script>
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="bootstrap-table.min.js"></script>
+
+        <link href="main.css" rel="stylesheet">
+
+</head>
+
+  <body>
+      <div id='loading_wrap' style='position:fixed; height:100%; width:100%; overflow:hidden; top:0; left:0;'>Loading, please wait.</div>
+          <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Make the customer happy!</h4>
+          </div>
+          <div class="modal-body">
+            <textarea class="form-control" rows="5" id="comment">Sorry for your troubles! We awarded you 500 free points.</textarea>
+            <div>
+
+                
+                <div class = "inlineDivs">
+                    <table>
+                        <tr>
+                            <td>Customer Since</td>
+                            <td>June 2003</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Rank</td>
+                            <td>743</td>
+                        </tr>
+                        <tr>
+                            <td>Net Worth</td>
+                            <td>$32,028</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class = "inlineDivs">
+                    <b>Recommended Award: <span style = "color:blue">500</span></b>
+                </div>
+                
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onClick = "awardCustomer()">Send</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <nav class="navbar navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            
+          <a href="/" class="navbar-brand"><span class="global-header__brand"><img src = "images/bluebank.png" height = 60px/>Administration</span></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <form class="navbar-form navbar-right">
+            <img src = "images/User.svg"/>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+<br>
+
+<div class="container-fluid">
+    <table id = "maintable" class="maintable  table borderless" data-toggle="table" data-url="/getAllData" data-cache="false" data-height="">
+        <thead>
+            <tr>
+                <th class="idth" style="width: 5%" data-field="id" data-sortable="false">
+                    <div class="thTopRow"><img src="images/Back.svg" /> Customer Satisfaction</div>
+                    ID</th>
+                <th class="nameth" data-field="user" data-sortable="false">USER</th>
+                <th class="statusth" data-field="status" data-sortable="false">STATUS</th>
+                <th class="worthth" data-field="worth" data-sortable="false">WORTH</th>
+                <th class="feedbackth" data-field="feedback" data-sortable="false">FEEDBACK</th>
+                <th class="graphth" data-field="summary" data-formatter="graphFormatter">
+                    
+                    <div class="box2">
+                        <img class="img-responsive center-block"  src="images/Happy.svg" />
+                        CHEERFUL
+                    </div>
+                    <div class="box2">
+                        <img class="img-responsive center-block" src="images/Negative.svg" />
+                        NEGATIVE
+                    </div>
+                    <div class="box2">
+                        <img class="img-responsive center-block" src="images/Angry.svg" />
+                        ANGRY
+                    </div>
+                          
+                    
+                </th>
+                <!--
+                <th class="scoreth" data-field="Cheerfulness" data-sortable="true" data-formatter="valueFormatter">
+                    <img class="img-responsive center-block" src="images/Happy.svg" />CHEERFULNESS</th>
+                <th class="scoreth" data-field="Negative" data-sortable="true" data-formatter="valueFormatter">
+                    <img class="img-responsive center-block" src="images/Negative.svg" />NEGATIVE</th>
+                <th class="scoreth" data-field="Anger" data-sortable="true" data-formatter="valueFormatter">
+                    <img class="img-responsive center-block" src="images/Angry.svg" />ANGER</th>
+                -->
+                <th class="operateth" data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-sortable="false">ACTIONS</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<footer class="footer">
+    <div class="container">
+
+        <p class="text-center"><img src="images/Bluemix.svg"/>
+            <br>Made with love &amp; <a href="http://bluemix.net" target="_blank">IBM Bluemix.</a>
+        </p>
+    </div>
+</footer>
+
+
+  </body>
+</html>
+
+<script>
+    function graphFormatter(value, row, index){
+        console.log("row", row.id);
+        return [
+            '<canvas width="500" height="80" id="graphDiv'+row.id+"-"+index+'">'+value+'</canvas>'
+        ].join('');
+        
+    }
+    function operateFormatter(value, row, index) {
+        //alert("hi");
+        return [
+            '<button type="button" class="btn btn-default btn-default" data-toggle="modal" data-target="#myModal">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Award</button>&nbsp;',
+            '<button type="button" class="btn btn-default btn-default" onClick = "resetData()">  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>'
+        ].join('');
+    }
+        function valueFormatter(value, row, index) {
+        //console.log("hi");
+        return [
+            '<div id="progressbar'+row.id+"-"+index+'">'+value+'</div>'
+        ].join('');
+    }
+
+
+    function awardCustomer(){
+        console.log ("awardCustomer!");
+        var user,fb;
+
+          $.post("/award",{"message":$("#comment").val()}, function(data){
+              console.log("sent!", data);
+              $('#myModal').modal('toggle');
+          });
+    }
+    function resetData(){
+        $.get("/init",{}, function(data){
+              location.reload();
+        });
+    }
+    
+   $('#maintable').bootstrapTable({
+      onLoadSuccess:function(){
+            drawGraphs();
+        } 
+   });
+   
+       
+    //$( document ).ready(function() {
+    //console.log("ready...");
+  // window.setTimeout(function() {
+
+      function drawGraphs(){
+        console.log( "ready!" , $( "div[id^='progressbar']" ));
+        
+        $( "div[id^='progressbar']" ).each(function () {
+            console.log($(this));
+            var value = $(this).html();
+            $(this).html("");
+            value = (value/150)*100;
+            var mybar = $(this).progressbar({
+              value: value
+            });
+            $(this).children().css({background : '#9C008A'});
+        });
+        $( "canvas[id^='graphDiv']" ).each(function () {
+            console.log("this", document.getElementById($(this).attr('id')));
+            var value = $(this).html().split(",");
+            
+            var myDom = this;
+            //console.log("mydom", do.getContext("2d"));
+            var ctx = document.getElementById($(this).attr('id')).getContext("2d");
+            var strokeColor = "rgba(156,0,138,1)";
+            if(value[0]>0){
+                strokeColor = "rgba(0,128,0,1)";
+            }
+            if(value[1]>0){
+                strokeColor = "rgba(255,255,0,1)";
+            }
+            if(value[2]>0){
+                strokeColor = "rgba(156,0,0,1)";
+            }
+            
+            var data = {
+                labels: ["Cheerfulness", "Negative", "Anger"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: strokeColor,
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: value
+                    },
+
+                ]
+            };
+            var myLineChart = new Chart(ctx).Line(data, {
+                bezierCurve: true,pointDot : false, showScale: false
+            });
+            
+        });
+
+    };
+</script>
+<script type='text'javascript'>
+$(document).ready(function(){
+    $('#loading_wrap').remove();
+});
+</script>
