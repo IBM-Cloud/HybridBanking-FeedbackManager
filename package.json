@@ -14,6 +14,7 @@
       "body-parser":"*",
       "watson-developer-cloud":"~0.10.6",
       "node-rest-client":"*",
-      "cookie-parser":"*"
+      "cookie-parser":"*",
+      "node-env-file":"*"
   }
 }

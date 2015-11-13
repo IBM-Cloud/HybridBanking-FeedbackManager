@@ -50,9 +50,8 @@
             <h4 class="modal-title">Make the customer happy!</h4>
           </div>
           <div class="modal-body">
-            <textarea class="form-control" rows="5" id="comment">Sorry for your troubles! We awarded you 500 free points.</textarea>
+            <textarea class="form-control" rows="5" id="comment">Sorry for your troubles! We awarded you 10,000 free points.</textarea>
             <div>
-
                 
                 <div class = "inlineDivs">
                     <table>
@@ -72,7 +71,7 @@
                 </div>
                 
                 <div class = "inlineDivs">
-                    <b>Recommended Award: <span style = "color:blue">500</span></b>
+                    <b>Recommended Award: <span style = "color:blue">10,000</span></b>
                 </div>
                 
             </div>
@@ -133,24 +132,23 @@
                         <img class="img-responsive center-block" src="images/Angry.svg" />
                         ANGRY
                     </div>
-                          
-                    
+                                              
                 </th>
-                <!--
-                <th class="scoreth" data-field="Cheerfulness" data-sortable="true" data-formatter="valueFormatter">
-                    <img class="img-responsive center-block" src="images/Happy.svg" />CHEERFULNESS</th>
-                <th class="scoreth" data-field="Negative" data-sortable="true" data-formatter="valueFormatter">
-                    <img class="img-responsive center-block" src="images/Negative.svg" />NEGATIVE</th>
-                <th class="scoreth" data-field="Anger" data-sortable="true" data-formatter="valueFormatter">
-                    <img class="img-responsive center-block" src="images/Angry.svg" />ANGER</th>
-                -->
+
                 <th class="operateth" data-field="operate" data-formatter="operateFormatter" data-events="operateEvents" data-sortable="false">ACTIONS</th>
             </tr>
         </thead>
     </table>
+
+<div class="center-block" style = "width:400px">
+    <h3 style = "text-align: center;">Overall Satisfaction</h3>
+    <canvas id="myTotalsChart" width="400" height="400"></canvas>
+
 </div>
 
-<footer class="footer">
+</div>
+
+<footer class="navbar navbar navbar-fixed-bottom bottombar" >
     <div class="container">
 
         <p class="text-center"><img src="images/Bluemix.svg"/>
@@ -164,110 +162,152 @@
 </html>
 
 <script>
-    function graphFormatter(value, row, index){
-        console.log("row", row.id);
-        return [
-            '<canvas width="500" height="80" id="graphDiv'+row.id+"-"+index+'">'+value+'</canvas>'
-        ].join('');
-        
-    }
-    function operateFormatter(value, row, index) {
-        //alert("hi");
-        return [
-            '<button type="button" class="btn btn-default btn-default" data-toggle="modal" data-target="#myModal">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Award</button>&nbsp;',
-            '<button type="button" class="btn btn-default btn-default" onClick = "resetData()">  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>'
-        ].join('');
-    }
-        function valueFormatter(value, row, index) {
-        //console.log("hi");
-        return [
-            '<div id="progressbar'+row.id+"-"+index+'">'+value+'</div>'
-        ].join('');
-    }
+function graphFormatter(value, row, index){
+    console.log("row", row.id);
+    return [
+    '<canvas width="500" height="80" id="graphDiv'+row.id+"-"+index+'">'+value+'</canvas>'
+    ].join('');
+
+}
+function operateFormatter(value, row, index) {
+
+    return [
+    '<button type="button" class="btn btn-default btn-default" data-toggle="modal" data-target="#myModal">  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Award</button>&nbsp;',
+    '<button type="button" class="btn btn-default btn-default" onClick = "resetData()">  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>'
+    ].join('');
+}
+function valueFormatter(value, row, index) {
+    return [
+    '<div id="progressbar'+row.id+"-"+index+'">'+value+'</div>'
+    ].join('');
+}
 
 
-    function awardCustomer(){
-        console.log ("awardCustomer!");
-        var user,fb;
+function awardCustomer(){
+    console.log ("awardCustomer!");
+    var user,fb;
 
-          $.post("/award",{"message":$("#comment").val()}, function(data){
-              console.log("sent!", data);
-              $('#myModal').modal('toggle');
-          });
-    }
-    function resetData(){
-        $.get("/init",{}, function(data){
-              location.reload();
-        });
-    }
-    
-   $('#maintable').bootstrapTable({
-      onLoadSuccess:function(){
-            drawGraphs();
-        } 
-   });
-   
-       
-    //$( document ).ready(function() {
-    //console.log("ready...");
-  // window.setTimeout(function() {
+    $.post("/award",{"message":$("#comment").val()}, function(data){
+      console.log("sent!", data);
+      $('#myModal').modal('toggle');
+  });
+}
+function resetData(){
+    $.get("/init",{}, function(data){
+      location.reload();
+  });
+}
 
-      function drawGraphs(){
-        console.log( "ready!" , $( "div[id^='progressbar']" ));
-        
-        $( "div[id^='progressbar']" ).each(function () {
-            console.log($(this));
-            var value = $(this).html();
-            $(this).html("");
-            value = (value/150)*100;
-            var mybar = $(this).progressbar({
-              value: value
-            });
-            $(this).children().css({background : '#9C008A'});
-        });
-        $( "canvas[id^='graphDiv']" ).each(function () {
-            console.log("this", document.getElementById($(this).attr('id')));
-            var value = $(this).html().split(",");
-            
-            var myDom = this;
+$('#maintable').bootstrapTable({
+  onLoadSuccess:function(){
+    drawGraphs();
+    drawTotalsGraph();
+} 
+});
+
+function drawGraphs(){
+    console.log( "ready!" , $( "div[id^='progressbar']" ));
+
+    $( "div[id^='progressbar']" ).each(function () {
+        console.log($(this));
+        var value = $(this).html();
+        $(this).html("");
+        value = (value/150)*100;
+        var mybar = $(this).progressbar({
+          value: value
+      });
+        $(this).children().css({background : '#9C008A'});
+    });
+    $( "canvas[id^='graphDiv']" ).each(function () {
+        console.log("this", document.getElementById($(this).attr('id')));
+        var value = $(this).html().split(",");
+
+        var myDom = this;
             //console.log("mydom", do.getContext("2d"));
             var ctx = document.getElementById($(this).attr('id')).getContext("2d");
             var strokeColor = "rgba(156,0,138,1)";
             if(value[0]>0){
-                strokeColor = "rgba(0,128,0,1)";
+                strokeColor = "#46BFBD";
             }
             if(value[1]>0){
-                strokeColor = "rgba(255,255,0,1)";
+                strokeColor = "#FDB45C";
             }
             if(value[2]>0){
-                strokeColor = "rgba(156,0,0,1)";
+                strokeColor = "#F7464A";
             }
             
             var data = {
                 labels: ["Cheerfulness", "Negative", "Anger"],
                 datasets: [
-                    {
-                        label: "My First dataset",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: strokeColor,
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: value
-                    },
+                {
+                    label: "My First dataset",
+                    fillColor: strokeColor,
+                    strokeColor: strokeColor,
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: value
+                },
 
                 ]
             };
-            var myLineChart = new Chart(ctx).Line(data, {
-                bezierCurve: true,pointDot : false, showScale: false
+            var myLineChart = new Chart(ctx).Bar(data, {
+                bezierCurve: true,pointDot : false, showScale: false, barValueSpacing : 10
             });
             
         });
 
-    };
-</script>
-<script type='text'javascript'>
+};
+
+function drawPolarGraph(graphData){
+    var ctx = document.getElementById("myTotalsChart").getContext("2d");
+    var data = [
+        {
+            value: graphData[0],
+            color:"#46BFBD",
+            highlight: "#46BFBD",
+            label: "Cheerful"
+        },
+        {
+            value: graphData[1],
+            color: "#FDB45C",
+            highlight: "#FDB45C",
+            label: "Negative"
+        },
+        {
+            value: graphData[2],
+            color: "#F7464A",
+            highlight: "#F7464A",
+            label: "Anger"
+        }
+
+    ];
+    
+
+
+    var myNewChart = new Chart(ctx).PolarArea(data, {scaleShowLabelBackdrop: false, showScale: true, scaleShowLine : true});
+
+};
+
+function drawTotalsGraph(){
+    $.get( "/getAllData", function( data ) {
+      console.log( "Data Loaded: ",  data );
+      var Cheerfulness = 0;
+      var Negative = 0;
+      var Anger = 0;
+        for(var i=0;i<data.length;i++){
+
+                Cheerfulness += parseInt(data[i].Cheerfulness);
+                Negative += parseInt(data[i].Negative);
+                Anger += parseInt(data[i].Anger);
+
+            }
+        drawPolarGraph([Cheerfulness, Negative, Anger]);
+      
+    });
+}
+
 $(document).ready(function(){
     $('#loading_wrap').remove();
 });

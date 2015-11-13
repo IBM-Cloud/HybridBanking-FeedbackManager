@@ -1,9 +1,19 @@
 [{
+    "id": 2,
+    "user": "Gabrielle Patel",
+    "status":"Gold",
+    "worth":"$36k",
+    "feedback": "This application is very difficult to use. Please fix the usability",
+    "Cheerfulness": "0",
+    "Negative": "30",
+    "Anger": "0",
+    "summary": ["0", "30", "0"]
+},{
     "id": 0,
     "user": "Eduado Haugen",
     "worth":"$3k",
     "status":"Bronze",
-    "feedback": "Where do I see my points history??",
+    "feedback": "Where do I see my points history?",
     "Cheerfulness": "0",
     "Negative": "0",
     "Anger": "0",
@@ -13,22 +23,12 @@
     "user": "Bian Robinson",
     "status":"Gold",
     "worth":"$71k",
-    "feedback": "The app is very slow. Very frustrating",
+    "feedback": "The app is very slow. Very frustrating [Translated]",
     "Cheerfulness": "0",
     "Negative": "47",
     "Anger": "143",
     "summary": ["0", "47", "143"]
-}, {
-    "id": 2,
-    "user": "Gabrielle Patel",
-    "status":"Gold",
-    "worth":"$36k",
-    "feedback": "I was able to go to use my points to get 400 GB/hours on Bluemix!",
-    "Cheerfulness": "0",
-    "Negative": "0",
-    "Anger": "0",
-    "summary": ["0", "0", "0"]
-}, {
+},  {
     "id": 3,
     "user": "Yahir Gustavsson",
     "status":"Bronze",
