@@ -1,7 +1,7 @@
 {
-  "name": "locallaunch",
+  "name": "HybridBanking",
   "version": "1.0.0",
-  "description": "Bluemix Local launch event application",
+  "description": "Bluemix Hybrid Banking demo",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

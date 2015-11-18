@@ -1,7 +1,7 @@
 
-//FILL THESE OUT WITH YOUR OWN VALUES AND UNCOMMENT
+//FILL THESE OUT WITH YOUR OWN VALUES. (You can also provide a .env file or use environment variables)
 //You can find these by clicking Show Credentials under IBM Push Notificaitons in your mobile backend dashboard.
-process.env.IBMPushNotifications_url = "IBM_PUSH_NOTOFICATION_URL";
+process.env.IBMPushNotifications_url = "IBM_PUSH_NOTIFICATION_URL";
 process.env.IBMPushNotifications_appSecret  = "IBM_PUSH_NOTOFICATION_SECRET";
 
 var express = require('express'),
@@ -16,7 +16,9 @@ var express = require('express'),
     utils = require('./utils'),
     env = require('node-env-file');
 
- env(__dirname + '/.env', {overwrite: true});
+ env(__dirname + '/.env', {overwrite: true, raise: false});
+
+console.log("process.env.IBMPushNotifications_url: " + process.env.IBMPushNotifications_url);
 var client = new Client();
 var app = express();
 app.use(cookieParser());
