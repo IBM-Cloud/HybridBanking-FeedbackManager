@@ -43,7 +43,7 @@ app.post('/submitFeedback',function(req,res){
   var feedback=req.body.feedback;
   console.log("User name = "+user_name+", feedback is "+feedback);
   var data = {"id": db.length, user:user_name, "feedback":feedback, status: "Platinum", worth: "$32k"};
-  toneAnalyze(translateFeedback(data));
+  translateFeedback(data, function(dataJSON){toneAnalyze(dataJSON)});
   res.end("OK");
 });
 
@@ -122,7 +122,7 @@ function toneAnalyze(dataJSON){
 }
 
 //Translate the message
-function translateFeedback(dataJSON){
+function translateFeedback(dataJSON, callback){
     language_translation.identify({
       text: dataJSON.feedback 
     }, function (err, language) {
@@ -136,13 +136,14 @@ function translateFeedback(dataJSON){
                     if (err) console.log('error:', err);
                     else{
                       dataJSON.feedback = translation.translations[0].translation + " [translated]";
-                      toneAnalyze(dataJSON);
+                      callback(dataJSON);
                     }
                 });
-            }  
+            } else{
+              callback(dataJSON)
+            }
         }
     });
-    return dataJSON;
 }
 
 app.listen(process.env.PORT || 3001);
