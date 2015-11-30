@@ -171,13 +171,20 @@ function graphFormatter(value, row, index){
 }
 
 function feedbackFormatter(value, row, index){
-    var output = value;
+    var output = "" + value;
     if(row.sourceLanguage){
-        output += ' [Translated from '+ row.sourceLanguage +']'
+        var sourceFeedback = "" + escape(row.sourceFeedback);
+        output += ' <span class = "feedbackSpan" style="color:#4178be;" '
+        output += 'title="' + row.sourceFeedback + '"';
+        output += 'onclick=this.innerHTML=decodeURI("['+sourceFeedback+']")';
+        output += '>'; 
+        output += '[Translated from ';
+        output += row.sourceLanguage + ']'
+        output += '</span>';
     }
     return output;
-
 }
+
 function operateFormatter(value, row, index) {
 
     return [

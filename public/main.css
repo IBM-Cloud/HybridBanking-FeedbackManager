@@ -34,7 +34,9 @@ td {
     padding-left: 10px;
 }
 
-
+.feedbackSpan{
+  cursor: pointer;
+}
  .maintable { table-layout: fixed; 
  border: none !important;}
 
