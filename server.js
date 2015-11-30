@@ -129,13 +129,13 @@ function translateFeedback(dataJSON, callback){
         if (err){
           console.log('error:', err);
         } else{
-            if(language.languages[0].language == 'es'){
+            if(language.languages[0].language == 'es' || language.languages[0].language == 'fr'){
                 language_translation.translate({
-                    text: dataJSON.feedback, source : 'es', target: 'en' },
+                    text: dataJSON.feedback, source : language.languages[0].language, target: 'en' },
                   function (err, translation) {
                     if (err) console.log('error:', err);
                     else{
-                      dataJSON.feedback = translation.translations[0].translation + " [translated]";
+                      dataJSON.feedback = translation.translations[0].translation + " [translated from "+language.languages[0].language+"]";
                       callback(dataJSON);
                     }
                 });
