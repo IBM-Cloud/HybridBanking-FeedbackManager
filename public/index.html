@@ -117,7 +117,7 @@
                 <th class="nameth" data-field="user" data-sortable="false">USER</th>
                 <th class="statusth" data-field="status" data-sortable="false">STATUS</th>
                 <th class="worthth" data-field="worth" data-sortable="false">WORTH</th>
-                <th class="feedbackth" data-field="feedback" data-sortable="false">FEEDBACK</th>
+                <th class="feedbackth" data-field="feedback" data-formatter="feedbackFormatter" data-sortable="false">FEEDBACK</th>
                 <th class="graphth" data-field="summary" data-formatter="graphFormatter">
                     
                     <div class="box2">
@@ -167,6 +167,15 @@ function graphFormatter(value, row, index){
     return [
     '<canvas width="500" height="80" id="graphDiv'+row.id+"-"+index+'">'+value+'</canvas>'
     ].join('');
+
+}
+
+function feedbackFormatter(value, row, index){
+    var output = value;
+    if(row.sourceLanguage){
+        output += ' [Translated from '+ row.sourceLanguage +']'
+    }
+    return output;
 
 }
 function operateFormatter(value, row, index) {

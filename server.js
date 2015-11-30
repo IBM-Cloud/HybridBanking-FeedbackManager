@@ -135,7 +135,10 @@ function translateFeedback(dataJSON, callback){
                   function (err, translation) {
                     if (err) console.log('error:', err);
                     else{
-                      dataJSON.feedback = translation.translations[0].translation + " [translated from "+language.languages[0].language+"]";
+                      
+                      dataJSON.sourceFeedback = dataJSON.feedback;
+                      dataJSON.sourceLanguage = language.languages[0].language;
+                      dataJSON.feedback = translation.translations[0].translation;
                       callback(dataJSON);
                     }
                 });
