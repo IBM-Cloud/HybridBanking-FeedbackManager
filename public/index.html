@@ -32,6 +32,7 @@
     
     <!-- Latest compiled and minified JavaScript -->
     <script src="bootstrap-table.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
         <link href="main.css" rel="stylesheet">
 
@@ -324,7 +325,16 @@ function drawTotalsGraph(){
     });
 }
 
+function appendFeedback(data) {
+    console.log(data);
+    $('#maintable').bootstrapTable('append', data);
+    drawGraphs();
+    drawTotalsGraph();
+}
+
 $(document).ready(function(){
     $('#loading_wrap').remove();
+    var socket = io();
+    socket.on('feedback', appendFeedback);
 });
 </script>
