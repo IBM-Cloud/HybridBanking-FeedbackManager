@@ -25,6 +25,8 @@ app.use(cookieParser());
 app.use(cors());
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 var db = [];
 
@@ -116,6 +118,7 @@ function toneAnalyze(dataJSON){
         }
         dataJSON["summary"]= [dataJSON.Cheerfulness, dataJSON.Negative, dataJSON.Anger ];
         db.push(dataJSON);
+        io.emit('feedback', dataJSON);
         console.log(db);
       }
     });
@@ -149,4 +152,4 @@ function translateFeedback(dataJSON, callback){
     });
 }
 
-app.listen(process.env.PORT || 3001);
+server.listen(process.env.PORT || 3001);
