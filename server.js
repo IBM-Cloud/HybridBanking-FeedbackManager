@@ -92,9 +92,11 @@ function serveStaticContent(req, res, next){
 
 //Get Credentials for Watson services. 
 var TAcredentials = extend({
-  version: 'v2',
-  username: 'a468c26a-85e8-4e83-b75f-12d2ef321e39', //when running locally
-  password: 'g52EKZfV8WtT'
+  url: 'https://gateway-s.watsonplatform.net/tone-analyzer-beta/api',
+  version: 'v3-beta',
+  version_date: '2016-11-02',
+  username: 'b5cbe8ee-5b4e-43c5-b5ad-56e488ddd254', //when running locally
+  password: 'ish98NCMWRnL'
 }, bluemix.getServiceCreds('tone_analyzer'));  // running on Cloud: VCAP_SERVICES
 var toneAnalyzer = watson.tone_analyzer(TAcredentials);
 
@@ -110,13 +112,26 @@ function toneAnalyze(dataJSON){
   toneAnalyzer.tone({
     'text': dataJSON.feedback,
     language: 'en' }, function(err, data) {
-      if (err) console.log(err);
+      if (err) console.log("Tone Analyzer Error ", err);
       else {
-        var emotion = data.children[0].children;
+        console.log("CHILDREN: " , data.document_tone.tone_categories[0].tones);
+        var emotion = data.document_tone.tone_categories[0].tones;
         for (x in emotion) {
-          dataJSON[emotion[x].name] = (parseFloat(emotion[x].raw_score)*1000).toFixed(0);;
+          console.log("xxxxx");
+          console.log(emotion[x]);
+          //dataJSON[emotion[x].tone_name] = (parseFloat(emotion[x].score)*100).toFixed(0);
+          dataJSON[emotion[x].tone_name] = (emotion[x].score*100).toFixed();
         }
-        dataJSON["summary"]= [dataJSON.Cheerfulness, dataJSON.Negative, dataJSON.Anger ];
+
+        //Anger vs Disgust...whichever is bigger = Anger
+        dataJSON.Anger = Math.max(parseFloat(dataJSON.Anger) , parseFloat(dataJSON.Disgust));
+        var smallest = Math.min(dataJSON.Joy, dataJSON.Sadness, dataJSON.Anger);
+        dataJSON.Joy = dataJSON.Joy -smallest;
+        dataJSON.Sadness = dataJSON.Sadness -smallest;
+        dataJSON.Anger = dataJSON.Anger -smallest;
+
+
+        dataJSON["summary"]= [dataJSON.Joy, dataJSON.Sadness, dataJSON.Anger ];
         db.push(dataJSON);
         io.emit('feedback', dataJSON);
         console.log(db);
@@ -130,7 +145,7 @@ function translateFeedback(dataJSON, callback){
       text: dataJSON.feedback 
     }, function (err, language) {
         if (err){
-          console.log('error:', err);
+          console.log('Translate error:', err);
         } else{
             if(language.languages[0].language == 'es' || language.languages[0].language == 'fr'){
                 language_translation.translate({
@@ -152,4 +167,6 @@ function translateFeedback(dataJSON, callback){
     });
 }
 
-server.listen(process.env.PORT || 3001);
+var port = process.env.PORT || 3001;
+server.listen(port);
+console.log("localhost:" + port);

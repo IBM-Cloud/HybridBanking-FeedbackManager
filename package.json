@@ -9,13 +9,13 @@
   "author": "Ram Vennam",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "cors": "*",
     "express": "^4.13.3",
-      "cors":"*",
-      "body-parser":"*",
-      "watson-developer-cloud":"~0.10.6",
-      "node-rest-client":"*",
-      "cookie-parser":"*",
-      "socket.io": "^1.3.7",
-      "node-env-file":"*"
+    "node-env-file": "*",
+    "node-rest-client": "*",
+    "socket.io": "^1.3.7",
+    "watson-developer-cloud": "^1.2.3"
   }
 }

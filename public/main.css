@@ -1,8 +1,8 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
-    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue","HelvLightIBM",Arial,sans-serif;
-    font-weight: 100;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", HelveticaLT, Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
     font-size: 15px;
 }
 

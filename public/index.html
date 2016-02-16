@@ -123,15 +123,15 @@
                     
                     <div class="box2">
                         <img class="img-responsive center-block"  src="images/Happy.svg" />
-                        CHEERFUL
+                        JOY
                     </div>
                     <div class="box2">
                         <img class="img-responsive center-block" src="images/Negative.svg" />
-                        NEGATIVE
+                        SADNESS
                     </div>
                     <div class="box2">
                         <img class="img-responsive center-block" src="images/Angry.svg" />
-                        ANGRY
+                        ANGER
                     </div>
                                               
                 </th>
@@ -254,7 +254,7 @@ function drawGraphs(){
             }
             
             var data = {
-                labels: ["Cheerfulness", "Negative", "Anger"],
+                labels: ["Joy", "Sadness", "Anger"],
                 datasets: [
                 {
                     label: "My First dataset",
@@ -284,13 +284,13 @@ function drawPolarGraph(graphData){
             value: graphData[0],
             color:"#46BFBD",
             highlight: "#46BFBD",
-            label: "Cheerful"
+            label: "Joy"
         },
         {
             value: graphData[1],
             color: "#FDB45C",
             highlight: "#FDB45C",
-            label: "Negative"
+            label: "Sadness"
         },
         {
             value: graphData[2],
@@ -310,17 +310,17 @@ function drawPolarGraph(graphData){
 function drawTotalsGraph(){
     $.get( "/getAllData", function( data ) {
       console.log( "Data Loaded: ",  data );
-      var Cheerfulness = 0;
-      var Negative = 0;
+      var Joy = 0;
+      var Sadness = 0;
       var Anger = 0;
         for(var i=0;i<data.length;i++){
 
-                Cheerfulness += parseInt(data[i].Cheerfulness);
-                Negative += parseInt(data[i].Negative);
+                Joy += parseInt(data[i].Joy);
+                Sadness += parseInt(data[i].Sadness);
                 Anger += parseInt(data[i].Anger);
 
             }
-        drawPolarGraph([Cheerfulness, Negative, Anger]);
+        drawPolarGraph([Joy, Sadness, Anger]);
       
     });
 }
