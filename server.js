@@ -1,24 +1,43 @@
-
-//FILL THESE OUT WITH YOUR OWN VALUES. (You can also provide a .env file or use environment variables)
-//You can find these by clicking Show Credentials under IBM Push Notificaitons in your mobile backend dashboard.
-process.env.IBMPushNotifications_url = "IBM_PUSH_NOTIFICATION_URL";
-process.env.IBMPushNotifications_appSecret  = "IBM_PUSH_NOTOFICATION_SECRET";
+// read cf-env from local file VCAP_SERVICES.json or from CF Environment in Bluemix
+// http://blog.ibmjstart.net/2015/08/31/abstracting-out-environment-variables-for-bluemix/
+var vcapServices = require('./vcapservices.js');
 
 var express = require('express'),
     cors = require('cors'),
     bodyParser = require("body-parser"),
-    bluemix   = require('./config/bluemix'),
     extend    = require('util')._extend,
-    watson = require('watson-developer-cloud'),
     fs = require('fs'),
     cookieParser = require('cookie-parser'),
     Client = require('node-rest-client').Client,
     utils = require('./utils'),
     env = require('node-env-file');
+    ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
+    LanguageTranslatorV2 = require('watson-developer-cloud/language-translator/v2');
 
- env(__dirname + '/.env', {overwrite: true, raise: false});
+// source local environment variables from .env files
+env(__dirname + '/.env', {overwrite: true, raise: false});
 
-console.log("process.env.IBMPushNotifications_url: " + process.env.IBMPushNotifications_url);
+// IBM Push Notifications
+// You can find these by clicking Show Credentials under IBM Push Notifications in your mobile backend dashboard.
+// set this variables in Bluemix for your app as User Defined Environment Variables
+// set this variables in your .env file when testing locally
+// you should use the https url to keep your appSecret secret!
+var IBMPushNotifications_url = process.env.IBMPushNotifications_url;
+var IBMPushNotifications_appSecret = process.env.IBMPushNotifications_appSecret;
+
+//Get Credentials for Watson services.
+var language_translator = new LanguageTranslatorV2({
+  username: vcapServices.language_translation[0].credentials.username,
+  password: vcapServices.language_translation[0].credentials.password,
+  url: vcapServices.language_translation[0].credentials.url,
+});
+
+var toneAnalyzer = new ToneAnalyzerV3({
+  version_date: '2016-05-19',
+  username: vcapServices.tone_analyzer[0].credentials.username,
+  password: vcapServices.tone_analyzer[0].credentials.password,
+});
+
 var client = new Client();
 var app = express();
 app.use(cookieParser());
@@ -50,22 +69,25 @@ app.post('/submitFeedback',function(req,res){
 });
 
 app.get('/getAllData', function(req, res){
-        res.json(db);   
+        res.json(db);
 });
 
 app.get('/init', function(req, res){
     seedDB();
     res.cookie('bar', 'baz');
-    res.redirect('/'); 
+    res.redirect('/');
 });
 
 //Send Push notification to users by calling Mobile Backend Push Notificaiton API
 app.post('/award', function(req, res){
     console.log("awarding customer");
+    console.log(IBMPushNotifications_url);
+    console.log(IBMPushNotifications_appSecret);
+
     //Default notification to send to user.
     var notificationMessage = "I'm sorry! I gave you 500 free points.";
     if(req.body.message) notificationMessage = req.body.message;
-    
+
     var args = {
         data: {
           "message": {
@@ -75,11 +97,11 @@ app.post('/award', function(req, res){
         },
         headers: {
             "Content-Type": "application/json",
-            "appSecret":process.env.IBMPushNotifications_appSecret
+            "appSecret":IBMPushNotifications_appSecret
         }
     };
 
-    client.post(process.env.IBMPushNotifications_url + "/messages", args, function (data, response) {
+    client.post(IBMPushNotifications_url + "/messages", args, function (data, response) {
         console.log("notification sent!");
     });
     res.end("OK");
@@ -89,23 +111,6 @@ function serveStaticContent(req, res, next){
     console.log((new Date()).toJSON());
     return express.static('public');
 }
-
-//Get Credentials for Watson services. 
-var TAcredentials = extend({
-  url: 'https://gateway-s.watsonplatform.net/tone-analyzer-beta/api',
-  version: 'v3-beta',
-  version_date: '2016-11-02',
-  username: 'b5cbe8ee-5b4e-43c5-b5ad-56e488ddd254', //when running locally
-  password: 'ish98NCMWRnL'
-}, bluemix.getServiceCreds('tone_analyzer'));  // running on Cloud: VCAP_SERVICES
-var toneAnalyzer = watson.tone_analyzer(TAcredentials);
-
-var LTcredentials =  extend({
-  username: '4f1c9b5d-ef63-48bb-a2ea-627f16a0614c', //when running locally
-  password: 'pymQX8qZyGoQ',
-  version: 'v2'
-}, bluemix.getServiceCreds('language-translation')); // running on Cloud: VCAP_SERVICES
-var language_translation = watson.language_translation(LTcredentials);
 
 //Analyze the tone of the message
 function toneAnalyze(dataJSON){
@@ -141,8 +146,8 @@ function toneAnalyze(dataJSON){
 
 //Translate the message
 function translateFeedback(dataJSON, callback){
-    language_translation.identify({
-      text: dataJSON.feedback 
+    language_translator.identify({
+      text: dataJSON.feedback
     }, function (err, language) {
         if (err){
           console.log('Translate error:', err);
@@ -153,7 +158,7 @@ function translateFeedback(dataJSON, callback){
                   function (err, translation) {
                     if (err) console.log('error:', err);
                     else{
-                      
+
                       dataJSON.sourceFeedback = dataJSON.feedback;
                       dataJSON.sourceLanguage = language.languages[0].language;
                       dataJSON.feedback = translation.translations[0].translation;
