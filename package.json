@@ -16,6 +16,6 @@
     "node-env-file": "*",
     "node-rest-client": "*",
     "socket.io": "^1.3.7",
-    "watson-developer-cloud": "2.4.5"
+    "watson-developer-cloud": "^2.8.2"
   }
 }

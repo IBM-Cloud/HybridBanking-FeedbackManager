@@ -27,9 +27,9 @@ var IBMPushNotifications_appSecret = process.env.IBMPushNotifications_appSecret;
 
 //Get Credentials for Watson services.
 var language_translator = new LanguageTranslatorV2({
-  username: vcapServices.language_translation[0].credentials.username,
-  password: vcapServices.language_translation[0].credentials.password,
-  url: vcapServices.language_translation[0].credentials.url,
+  username: vcapServices.language_translator[0].credentials.username,
+  password: vcapServices.language_translator[0].credentials.password,
+  url: vcapServices.language_translator[0].credentials.url,
 });
 
 var toneAnalyzer = new ToneAnalyzerV3({
@@ -153,7 +153,7 @@ function translateFeedback(dataJSON, callback){
           console.log('Translate error:', err);
         } else{
             if(language.languages[0].language == 'es' || language.languages[0].language == 'fr'){
-                language_translation.translate({
+                language_translator.translate({
                     text: dataJSON.feedback, source : language.languages[0].language, target: 'en' },
                   function (err, translation) {
                     if (err) console.log('error:', err);

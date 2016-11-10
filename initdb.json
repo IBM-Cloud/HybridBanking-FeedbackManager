@@ -4,8 +4,8 @@
     "status":"Gold",
     "worth":"$36k",
     "feedback": "This application is very difficult to use. Please fix the usability",
-    "Cheerfulness": "0",
-    "Negative": "30",
+    "Joy": "0",
+    "Sadness": "30",
     "Anger": "0",
     "summary": ["0", "30", "0"]
 },{
@@ -14,8 +14,8 @@
     "worth":"$3k",
     "status":"Bronze",
     "feedback": "Where do I see my points history?",
-    "Cheerfulness": "0",
-    "Negative": "0",
+    "Joy": "0",
+    "Sadness": "0",
     "Anger": "0",
     "summary": ["0", "0", "0"]
 }, {
@@ -24,10 +24,10 @@
     "status":"Gold",
     "worth":"$71k",
     "feedback": "The app is very slow. Very frustrating",
-    "sourceFeedback": "La aplicación es muy lento. Muy frustrante",
+    "sourceFeedback": "La aplicacion es muy lento. Muy frustrante",
     "sourceLanguage": "es",
-    "Cheerfulness": "0",
-    "Negative": "47",
+    "Joy": "0",
+    "Sadness": "47",
     "Anger": "143",
     "summary": ["0", "47", "143"]
 },  {
@@ -36,8 +36,8 @@
     "status":"Bronze",
     "worth":"$6k",
     "feedback": "This is my favourite bank...how do you spell favourite?",
-    "Cheerfulness": "66",
-    "Negative": "0",
+    "Joy": "66",
+    "Sadness": "0",
     "Anger": "0",
     "summary": ["66", "0", "0"]
 }, {
@@ -46,8 +46,8 @@
     "status":"Silver",
     "worth":"$22k",
     "feedback": "Wow, I really like this application. Good stuff HybridBlueBank!",
-    "Cheerfulness": "110",
-    "Negative": "0",
+    "Joy": "110",
+    "Sadness": "0",
     "Anger": "0",
     "summary": ["110", "0", "0"]
 }]

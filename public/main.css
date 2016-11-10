@@ -3,7 +3,6 @@ body {
   padding-top: 50px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", HelveticaLT, Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
-    font-size: 15px;
 }
 
 .navbar-inverse {
@@ -37,7 +36,7 @@ td {
 .feedbackSpan{
   cursor: pointer;
 }
- .maintable { table-layout: fixed; 
+ .maintable { table-layout: fixed;
  border: none !important;}
 
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
@@ -54,7 +53,7 @@ td {
     width: 35%;
 }
 .graphth {
-    width: 500px;
+    width: 300px;
 }
 .statusth{
     width:80px;
@@ -64,10 +63,10 @@ td {
 }
 .nameth {
     width:130px;
-    
+
 }
 .operateth {
-    width: 15%;
+    width: 150px;
 
 }
 .scoreth {
@@ -101,7 +100,7 @@ thead {
 
   /* Opera 11.10+ */
   background: -o-linear-gradient(top, #5788BB, #B6DAF4);
-    
+
     border: none;
     color: white;
 }
@@ -127,11 +126,11 @@ th {
     font-weight: 100;
     font-size: 22px;
     padding:10px;
-    
+
 }
 .box2 {
   display: inline-block;
-  width: 166px;
+  width: 100px;
     text-align: center;
     padding-top:10px;
 }
